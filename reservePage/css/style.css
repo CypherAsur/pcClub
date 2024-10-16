@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+}
+
+/* HEADER */
+body {
+  font-family: "Open sans", sans-serif;
+  background: #0C0311;
+  height: 2060px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-nav__container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  background: #101116;
+  height: 100px;
+  width: 100%;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1384px;
+  margin: 0 auto;
+}
+
+.title {
+  display: flex;
+  width: 267px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title img {
+  width: 98px;
+  height: 98px;
+}
+
+.title h1 {
+  font-family: "Open sans", sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  font-style: italic;
+  color: white;
+}
+
+.title span {
+  color: #cd06ff;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 408px;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+}
+
+.logAndReserve {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 50px;
+}
+
+.logAndReserve img:last-of-type {
+  margin-bottom: 20px;
+}
+
+
+/* main */
+main {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 1140px;
+  height: 1960px;
+  margin: 0 auto;
+}
+
+.places-map {
+  display: flex;
+  width: 100%;
+  height: 1000px;
+}
+
+main a {
+  display: flex;
+  margin:  0 auto;
+  bottom: 150px;
+  width: 414px;
+  height: 84px;
+}
+
+.button {
+  margin: 0 auto;
+  width: 414px;
+  height: 84px;
+}
+
+/* Footer */
+
+footer {
+  display: flex;
+  margin: 0 auto;
+  align-items:center;
+  justify-content: space-between;
+  background: #101116;
+  height: 120px;
+  width: 100%;
+}
+
+.footer {
+  width: 1140px;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 510px;
+  color: white;
+  font-size: 24px;
+  font-weight: lighter;
+  text-align: center;
+  margin: 40PX auto 0;
+}
+
+.middle ul {
+  width: 510px;
+  margin-bottom: 35px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

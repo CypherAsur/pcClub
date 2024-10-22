@@ -108,7 +108,7 @@ header {
   overflow: hidden;
 }
 
-.fromTo {
+/* .fromTo {
   width: 100%;
   background: rgb(1, 1, 1);
   background: linear-gradient(
@@ -118,7 +118,7 @@ header {
   );
   height: 24px;
   margin-top: -15px;
-}
+} */
 
 /* Главное */
 

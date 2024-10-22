@@ -5,7 +5,7 @@
 /* HEADER */
 body {
   font-family: "Open sans", sans-serif;
-  background: #0C0311;
+  background: #0c0311;
   height: 2060px;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1384px;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -83,7 +83,6 @@ header {
   margin-bottom: 20px;
 }
 
-
 /* main */
 main {
   display: flex;
@@ -96,13 +95,37 @@ main {
 
 .places-map {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
   height: 1000px;
+  gap: 90px;
+}
+
+.seat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32px;
+  width: 110px;
+  height: 175px;
+}
+
+.seat p {
+  color: white;
+  font-size: 32px;
+}
+
+.seat img {
+  width: 111px;
+  height: 111px;
 }
 
 main a {
   display: flex;
-  margin:  0 auto;
+  margin: 0 auto;
   bottom: 150px;
   width: 414px;
   height: 84px;
@@ -119,7 +142,7 @@ main a {
 footer {
   display: flex;
   margin: 0 auto;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
   background: #101116;
   height: 120px;
@@ -127,7 +150,7 @@ footer {
 }
 
 .footer {
-  width: 1140px;
+  width: 90%;
   height: 120px;
   display: flex;
   flex-direction: row;
@@ -145,7 +168,7 @@ footer {
   font-size: 24px;
   font-weight: lighter;
   text-align: center;
-  margin: 40PX auto 0;
+  margin: 40px auto 0;
 }
 
 .middle ul {
@@ -157,4 +180,73 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 1440px) {
+  body {
+    max-width: 1439px;
+  }
+
+  main {
+    margin: 108px auto;
+    width: 90%;
+    max-width: 934px;
+  }
+
+  .places-map {
+    width: 100%;
+    height: 568px;
+    gap: 75px;
+  }
+
+  .seat {
+    font-size: 32px;
+    width: 93px;
+    height: 143px;
+  }
+
+  /* .seat p {
+  color: white;
+  font-size: 32px;
+} */
+
+  .seat img {
+    width: 93px;
+    height: 93px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  body {
+    max-width: 1023px;
+  }
+
+  main {
+    justify-content: space-between;
+    margin: 108px auto;
+    width: 90%;
+    max-width: 625px;
+  }
+
+  .places-map {
+    width: 100%;
+    height: 570px;
+    gap: 50px;
+  }
+
+  .seat {
+    font-size: 20px;
+    width: 62px;
+    height: 116px;
+  }
+
+  /* .seat p {
+  color: white;
+  font-size: 32px;
+} */
+
+  .seat img {
+    width: 62px;
+    height: 62px;
+  }
 }

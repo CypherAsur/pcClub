@@ -1,125 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main page</title>
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="../js/script.js"></script>
-  </head>
-  <body>
 
-    <header class="header-nav__container">
-        <div class="header-nav">
-          <div class="title">
-            <a href="../index.html"><img src="../icons/logo.svg" alt="" /></a>
-            <h1><span>A</span>RCANE</h1>
-          </div>
-          <div class="logAndReserve">
-            <img src="../icons/person.svg" alt="" />
-          </div>
-        </div>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main page</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- <script src="../js/script.js" defer></script> -->
+  <script src="../js/reserve.js" defer></script>
+</head>
 
-      <main>
-        <div class="places-map">
-          <div class="seat">
-            <p>1</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>2</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>3</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>4</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>5</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>6</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>7</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>8</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>9</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>10</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>11</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>12</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>13</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>14</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>15</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>16</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>17</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-          <div class="seat">
-            <p>18</p>
-            <img src="../icons/seat.svg" alt="">
-          </div>
-        </div>
-        <a href="reservePage/index.html"
-          ><img class="button" src="../img/button-seats.svg" alt=""
-        /></a>
-      </main>
+<body>
+  <div class="back"></div>
 
-      <footer>
-      <section class="footer">
-        <img src="../icons/logo.svg" alt="" />
-        <div class="middle">
-          <!-- <ul class="nav-menu">
+  <!-- Бронь -->
+  <div class="form-container reserve hidden">
+    <form class="form" id="bookingForm">
+      <div class="stroke">
+        <label for="dateBeg">НАЧАЛО</label>
+        <input type="date" class="dateBeg" name="dateBeg" required>
+        <select name="timeBeg" required id="timeBeg"></select>
+      </div>
+
+      <div class="stroke">
+        <label for="dateEnd">Конец</label>
+        <input type="date" class="dateEnd" name="dateEnd" required>
+        <select name="timeEnd" required id="timeEnd"></select>
+      </div>
+      <div>
+        <p>место №<span id="placeNumber"></span></p>
+        <p>Итоговая стоимость: <span id="totalCost">0</span> рублей</p>
+      </div>
+      <button class="resBtn" type="submit"></button>
+    </form>
+  </div>
+
+  <!-- Основа -->
+
+  <header class=" header-nav__container">
+    <div class="header-nav">
+      <div class="title">
+        <a href="../index.html"><img src="../icons/logo.svg" alt="" /></a>
+        <h1><span>A</span>RCANE</h1>
+      </div>
+      <div class="logAndReserve">
+        <img src="../icons/person.svg" alt="" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="places-map">
+
+      <div class="seat-info">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <img src="../img/bookingBtn.svg" alt="кнопка брони">
+      </div>
+    </div>
+    <a href="reservePage/index.html"><img class="button" src="../img/button-seats.svg" alt="" /></a>
+  </main>
+
+  <footer>
+    <section class="footer">
+      <img src="../icons/logo.svg" alt="" />
+      <div class="middle">
+        <!-- <ul class="nav-menu">
             <li><a href="">О НАС</a></li>
             <li><a href="">МЕСТА</a></li>
             <li><a href="">КОНТАКТЫ</a></li>
           </ul> -->
-          <p>ⓒArcanePCs.Inc 2021-2024</p>
-        </div>
-        <div class="links">
-          <img src="../icons/telegram.svg" alt="" />
-          <img src="../icons/vk.svg" alt="" />
-        </div>
-      </section>
-    </footer>
+        <p>ⓒArcanePCs.Inc 2021-2024</p>
+      </div>
+      <div class="links">
+        <img src="../icons/telegram.svg" alt="" />
+        <img src="../icons/vk.svg" alt="" />
+      </div>
+    </section>
+  </footer>
 
-  </body>
+</body>
+
 </html>

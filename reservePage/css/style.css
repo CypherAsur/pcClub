@@ -111,6 +111,7 @@ main {
   font-size: 32px;
   width: 110px;
   height: 175px;
+  position: relative;
 }
 
 .seat p {
@@ -118,7 +119,7 @@ main {
   font-size: 32px;
 }
 
-.seat img {
+.theSeat {
   width: 111px;
   height: 111px;
 }
@@ -135,6 +136,132 @@ main a {
   margin: 0 auto;
   width: 414px;
   height: 84px;
+}
+
+/* Работа с местами */
+
+.seat-info {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(../../img/infoBack.svg);
+  background-repeat: no-repeat;
+  width: 395px;
+  height: 465px;
+  top: 180px;
+  z-index: 5;
+}
+
+.entires {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  justify-content: space-between;
+  align-items: center;
+  width: 455px;
+  height: 350px;
+}
+
+.seat-info img {
+  background-image: url(../../img/bookingBtn.svg);
+  background-repeat: no-repeat;
+  width: 305px;
+  height: 62px;
+}
+
+.seat-info p {
+  font-family: "Open sans", sans-serif;
+  color: white;
+  font-size: 36px;
+}
+
+.back {
+  position: absolute;
+  align-self: center;
+  margin: auto;
+  display: none;
+  width: 100%;
+  height: 4792px;
+  z-index: 2;
+  background: rgba(1, 0, 2, 0.8);
+}
+
+/* Форма брони */
+.form-container {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 820px;
+  height: 820px;
+  background: #1a0026;
+  color: white;
+  font-size: 32px;
+  font-family: "Open sans", sans-serif;
+  border-radius: 68px;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 3;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 620px;
+  height: 720px;
+}
+
+.stroke {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.stroke:first-child {
+  width: 100%;
+  height: 75px;
+  border-radius: 40px;
+  border: none;
+  padding: 10px;
+}
+
+.dateBeg {
+  width: 134px;
+  height: 52px;
+  border-radius: 39px;
+}
+.dateEnd {
+  width: 134px;
+  height: 52px;
+  border-radius: 39px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+}
+
+.btns img {
+  width: 330px;
+  height: 85px;
+}
+
+.resBtn {
+  background-image: url(../../img/resFormBtn.svg);
+  width: 330px;
+  height: 85px;
+}
+
+button {
+  background: none;
+  color: none;
+  border: none;
 }
 
 /* Footer */
@@ -195,7 +322,7 @@ footer {
 
   .places-map {
     width: 100%;
-    height: 568px;
+    height: 946px;
     gap: 75px;
   }
 
@@ -210,7 +337,7 @@ footer {
   font-size: 32px;
 } */
 
-  .seat img {
+  .theSeat {
     width: 93px;
     height: 93px;
   }
@@ -245,7 +372,7 @@ footer {
   font-size: 32px;
 } */
 
-  .seat img {
+  .theSeat {
     width: 62px;
     height: 62px;
   }

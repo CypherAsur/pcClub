@@ -1,51 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main page</title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js"></script>
-  </head>
-  <body>
-    <!-- Шапка -->
 
-    <header>
-      <!-- Тавигация -->
-      <section class="header-nav__container">
-        <div class="header-nav">
-          <div class="title">
-            <img src="icons/logo.svg" alt="лого" />
-            <h1><span>A</span>RCANE</h1>
-          </div>
-          <ul class="nav-menu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main page</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+  <div class="back">
+  </div>
+  <!-- Шапка -->
+
+  <header>
+    <!-- Тавигация -->
+    <section class="header-nav__container">
+      <div class="header-nav">
+        <div class="title">
+          <img src="icons/logo.svg" alt="лого" />
+          <h1><span>A</span>RCANE</h1>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#about">О НАС</a></li>
+          <li><a href="#places">МЕСТА</a></li>
+          <li><a href="#contacts">КОНТАКТЫ</a></li>
+        </ul>
+        <div class="logAndReserve">
+          <a href="reservePage/index.html"><img src="img/button.svg" alt="забронировать" /></a>
+          <img src="icons/person.svg" class="login" alt="вход" onclick="openModal('acc')" />
+        </div>
+        <img src="icons/menu.svg" class="menu" alt="меню" onclick="openModal('dropdown-content')">
+        <div class="dropdown-content">
+          <ul class="nav-menu min">
             <li><a href="#about">О НАС</a></li>
             <li><a href="#places">МЕСТА</a></li>
             <li><a href="#contacts">КОНТАКТЫ</a></li>
           </ul>
-          <div class="logAndReserve">
-            <a href="reservePage/index.html"
-              ><img src="img/button.svg" alt="забронировать"
-            /></a>
-            <img src="icons/person.svg" alt="вход" />
+          <div class="acc-min">
+            <p onclick="openModal('log-in'), closeModal('dropdown-content') ">ВХОД</p>
+            <p onclick="openModal('reg'), closeModal('dropdown-content')">РЕГИСТРАЦИЯ</p>
           </div>
-          <img src="icons/menu.svg" class="menu" alt="меню">
+          <a href="reservePage/index.html"><img src="img/button.svg" alt="забронировать" /></a>
+
+
         </div>
-      </section>
-      <!-- Картинка + переход -->
-      <div class="image-container">
-        <img src="img/headerBG.png" alt="шапка" />
       </div>
-    </header>
+    </section>
+    <!-- Картинка + переход -->
+    <div class="image-container">
+      <img src="img/headerBG.png" alt="шапка" />
+    </div>
+  </header>
 
-    <!-- база -->
+  <!-- Аккаунт -->
 
-    <main>
-      <!-- О нас -->
+  <div class="acc hidden">
+    <p onclick="openModal('log-in'), closeModal('acc')">ВХОД</p>
+    <p onclick="openModal('reg'), closeModal('acc')">РЕГИСТРАЦИЯ</p>
+  </div>
 
-      <section class="about" id="about">
+  <!-- Регистрация -->
+
+  <div class="form-container reg hidden">
+    <form class="form">
+      <div class="stroke">
+        <label for="username">Email:</label>
+
+        <input type="email" class="username" name="username" max="30" required>
+        <div class="error-email">
+          <p class="error__text"></p>
+        </div>
+      </div>
+
+      <div class="stroke">
+        <label for="phone">Телефон:</label>
+        <input type="" class="phone" name="phone" placeholder="+7 (___) ___-__-__">
+      </div>
+
+      <div class="stroke">
+        <label for="password">Пароль:</label>
+
+        <input type="password" class="password" name="password" required>
+        <div class="error">
+          <p class="error__text"></p>
+        </div>
+      </div>
+
+      <div class="btns">
+        <p onclick="openModal('log-in'), closeModal('reg')">вход</p>
+        <button class="regBtn" type="submit">
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Вход -->
+
+  <div class="form-container log-in hidden">
+    <form class="form">
+      <!-- <div class="strokes"> -->
+      <div class="stroke">
+        <label for="phone">Телефон:</label>
+        <input type="" class="phone" name="phone" placeholder="+7 (___) ___-__-__">
+      </div>
+
+      <div class="stroke">
+        <label for="password">Пароль:</label>
+
+        <input type="password" class="password" name="password" required>
+        <div class="error">
+          <p class="error__text"></p>
+        </div>
+      </div>
+      <!-- </div> -->
+      <div class="btns">
+        <button class="logBtn" type="submit">
+          <!-- <img src="img/logBtn.svg" alt=""> -->
+        </button>
+        <p onclick="openModal('reg'), closeModal('log-in')"">регистрация</p>
+      </div>
+    </form>
+  </div>
+
+  <!-- база -->
+
+  <main>
+    <!-- О нас -->
+
+    <section class=" about" id="about">
         <h1>О НАС</h1>
 
         <!-- Блок 1 -->
@@ -74,66 +160,65 @@
             <h2>БОЕВАЯ АТМОСФЕРА</h2>
           </div>
         </div>
-      </section>
+        </section>
 
-      <!-- Места -->
+        <!-- Места -->
 
-      <section class="places" id="places">
-        <h1>МЕСТА</h1>
-        <div class="pics-container">
-          <div class="pics">
-            <img src="img/1.png" alt="" class="card" />
-            <img src="img/2.png" alt="" class="card" />
-            <img src="img/3.png" alt="" class="card" />
-            <img src="img/4.png" alt="" class="card" />
-          </div>
-        </div>
-        <a href="reservePage/index.html"
-          ><img class="button" src="img/button-seats.svg" alt=""
-        /></a>
-      </section>
-
-      <!-- Контакты -->
-
-      <section class="contacts" id="contacts">
-        <h1>КОНТАКТЫ</h1>
-        <div class="map">
-          <img src="img/map.png" alt="" />
-          <div class="right-wrapper">
-            <div class="line">
-              <h3>Сергиев Посад, ул.<br />Центральная, д. 21Б</h3>
-              <img src="img/map-line.svg" alt="" />
-            </div>
-            <div class="line">
-              <h3>ArcanePCs@gmail.com</h3>
-              <img src="img/map-line.svg" alt="" />
-            </div>
-            <div class="line">
-              <h3>+7 (999) 348 25 - 44</h3>
-              <img src="img/map-line.svg" alt="" />
+        <section class="places" id="places">
+          <h1>МЕСТА</h1>
+          <div class="pics-container">
+            <div class="pics">
+              <img src="img/1.png" alt="" class="card" />
+              <img src="img/2.png" alt="" class="card" />
+              <img src="img/3.png" alt="" class="card" />
+              <img src="img/4.png" alt="" class="card" />
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+          <a href="reservePage/index.html"><img class="button" src="img/button-seats.svg" alt="" /></a>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-      <section class="footer">
-        <img src="icons/logo.svg" alt="" />
-        <div class="middle">
-          <ul class="nav-menu">
-            <li><a href="#about">О НАС</a></li>
-            <li><a href="#places">МЕСТА</a></li>
-            <li><a href="#contacts">КОНТАКТЫ</a></li>
-          </ul>
-          <p>ⓒArcanePCs.Inc 2021-2024</p>
-        </div>
-        <div class="links">
-          <img src="icons/telegram.svg" alt="" />
-          <img src="icons/vk.svg" alt="" />
-        </div>
-      </section>
-    </footer>
-  </body>
+        <!-- Контакты -->
+
+        <section class="contacts" id="contacts">
+          <h1>КОНТАКТЫ</h1>
+          <div class="map">
+            <img src="img/map.png" alt="" />
+            <div class="right-wrapper">
+              <div class="line">
+                <h3>Сергиев Посад, ул.<br />Центральная, д. 21Б</h3>
+                <img src="img/map-line.svg" alt="" />
+              </div>
+              <div class="line">
+                <h3>ArcanePCs@gmail.com</h3>
+                <img src="img/map-line.svg" alt="" />
+              </div>
+              <div class="line">
+                <h3>+7 (999) 348 25 - 44</h3>
+                <img src="img/map-line.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+          <section class="footer">
+            <img src="icons/logo.svg" alt="" />
+            <div class="middle">
+              <ul class="nav-menu">
+                <li><a href="#about">О НАС</a></li>
+                <li><a href="#places">МЕСТА</a></li>
+                <li><a href="#contacts">КОНТАКТЫ</a></li>
+              </ul>
+              <p>ⓒArcanePCs.Inc 2021-2024</p>
+            </div>
+            <div class="links">
+              <img src="icons/telegram.svg" alt="" />
+              <img src="icons/vk.svg" alt="" />
+            </div>
+          </section>
+        </footer>
+</body>
+
 </html>

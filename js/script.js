@@ -11,10 +11,18 @@ if (localStorage.getItem("users")) {
 } else {
     users = [
         {
+            user_id: 1,
             email: "shmidt@gmail.com",
             phone: "+7 (999) 222-34-35",
             password: "asdD1234",
             role: "superadmin",
+        },
+        {
+            user_id: 2,
+            email: "shmidt@gmail.com",
+            phone: "+7 (999) 999-99-99",
+            password: "Admin1234",
+            role: "admin",
         },
     ];
 }
@@ -53,7 +61,7 @@ const log = document.querySelector(".login");
 
 const passwordInput = reg.querySelector(".password");
 const usernameInput = reg.querySelector(".username");
-const phoneInput = reg.querySelector(".phone");
+const phoneInput = document.querySelectorAll(".phone");
 
 const passwordInputLog = login.querySelector(".password");
 const usernameInputLog = login.querySelector(".username");
@@ -68,33 +76,43 @@ const logBtn = document.querySelector(".logBtn");
 //     logBtn.firstElementChild.src = "img/logBtnActive.svg";
 // });
 
-phoneInput.addEventListener("input", function (e) {
-    let value = this.value.replace(/\D/g, "");
-    if (value.length > 11) {
-        value = value.slice(0, 11);
-    }
-    let formattedValue = "+7 (";
+phoneInput.forEach(element => {
+    element.addEventListener("input", function (e) {
+        let value = this.value.replace(/\D/g, "");
+        if (value.length > 11) {
+            value = value.slice(0, 11);
+        }
+        let formattedValue = "+7 (";
 
-    if (value.length > 1) {
-        formattedValue += value.substring(1, 4);
-    }
+        if (value.length > 1) {
+            formattedValue += value.substring(1, 4);
+        }
 
-    if (value.length >= 4) {
-        formattedValue += ") " + value.substring(4, 7);
-    }
+        if (value.length >= 4) {
+            formattedValue += ") " + value.substring(4, 7);
+        }
 
-    if (value.length >= 7) {
-        formattedValue += "-" + value.substring(7, 9);
-    }
+        if (value.length >= 7) {
+            formattedValue += "-" + value.substring(7, 9);
+        }
 
-    if (value.length >= 9) {
-        formattedValue += "-" + value.substring(9, 11);
-    }
+        if (value.length >= 9) {
+            formattedValue += "-" + value.substring(9, 11);
+        }
 
-    this.value = formattedValue;
+        this.value = formattedValue;
+    });
 });
 
 // Регистрация
+
+function generateUniqueId(users) {
+    let id;
+    do {
+        id = Math.floor(Math.random() * 10000);
+    } while (users.find(user => user.id === id));
+    return id;
+}
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -130,6 +148,7 @@ form.addEventListener("submit", function (e) {
     } else {
 
         users.push({
+            id: generateUniqueId(users),
             email: userName,
             password: password,
             phone: phone,
@@ -152,23 +171,34 @@ form.addEventListener("submit", function (e) {
 
 // Вход
 
+
 formLog.addEventListener('submit', (e) => {
     e.preventDefault();
     const password = passwordInputLog.value;
     const phone = phoneInputLog.value;
 
-    if (users.find(user => user.phone == phone) && (users.find(user => user.password == password))) {
+    const user = users.find(user => user.phone == phone && user.password == password);
 
-        sessionStorage.setItem('currentUser', users.find(user => user.phone == phone).email)
+    if (user) {
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        console.log(user);
 
-        acc.innerHTML = `<p>${sessionStorage.getItem('currentUser')}</p>
-    <p onclick="logOut()">ВЫХОД</p>`
+
+        let userNow = JSON.parse(sessionStorage.getItem('currentUser'));
+
+        acc.innerHTML = `<p>${userNow.email}</p>
+            <p onclick="logOut()">ВЫХОД</p>`;
 
         phoneInputLog.value = '';
         passwordInputLog.value = '';
         errorlog.style.display = "none";
         closeModal("log-in");
         bg.style.display = "none";
+        if (user.role == 'admin') {
+            window.location.assign("../adminPage/index.html");
+        } else if (user.role == 'superadmin') {
+            window.location.assign("../superadminPage/index.html");
+        }
     } else {
         errorlog.style.display = "flex";
         errorlog.firstElementChild.textContent =
@@ -191,7 +221,9 @@ const logOut = () => {
 // Модальные окна
 
 if (sessionStorage.getItem('currentUser')) {
-    acc.innerHTML = `<p>${sessionStorage.getItem('currentUser')}</p>
+    console.log(JSON.parse(sessionStorage.getItem('currentUser')));
+
+    acc.innerHTML = `<p>${JSON.parse(sessionStorage.getItem('currentUser')).email}</p>
     <p onclick="logOut()">ВЫХОД</p>`
 }
 

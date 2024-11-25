@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main page</title>
+  <title>Admin page</title>
   <link rel="stylesheet" href="../css/reset.css" />
   <link rel="stylesheet" href="../css/normalize.css" />
   <link rel="stylesheet" href="../css/style.css">
@@ -12,12 +12,70 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- <script src="../js/script.js" defer></script> -->
-  <script src="../js/reserve.js" defer></script>
+  <script src="../js/admin.js" defer></script>
 </head>
 
 <body>
   <div class="back"></div>
 
+  <!-- Место -->
+  <div class="form-container addplace hidden">
+    <form class="form" id="addplaceForm">
+      <div class="stroke">
+        <label for="price">Цена/Час</label>
+        <input type="number" class="price" name="price" required>
+      </div>
+      <div class="appars">
+        <div class="stroke">
+          <label for="cpu">CPU</label>
+          <select name="cpu" required class="cpuSelect appar" required></select>
+        </div>
+        <div class="stroke">
+          <label for="gpu">GPU</label>
+          <select name="gpu" required class="gpuSelect appar" required></select>
+        </div>
+        <div class="stroke">
+          <label for="cpu">МОНИТОР</label>
+          <select name="cpu" required class="monitorSelect appar" required></select>
+        </div>
+      </div>
+      <div class="error">
+        <p>Пожалуйста, заполните все поля!</p>
+      </div>
+      <button class="addPlaceBtn" type="submit"></button>
+    </form>
+  </div>
+
+  <!-- Изменить место -->
+  <div class="form-container changeplace hidden">
+    <form class="form" id="changeplaceForm">
+      <div class="stroke">
+        <label for="price">Цена/Час</label>
+        <input type="number" class="changeprice" name="price" c required>
+      </div>
+      <div class="appars">
+        <div class="stroke">
+          <label for="cpu">CPU</label>
+          <select name="cpu" required class="changecpuSelect appar" required></select>
+        </div>
+        <div class="stroke">
+          <label for="gpu">GPU</label>
+          <select name="gpu" required class="changegpuSelect appar" required></select>
+        </div>
+        <div class="stroke">
+          <label for="cpu">МОНИТОР</label>
+          <select name="cpu" required class="changemonitorSelect appar" required></select>
+        </div>
+      </div>
+      <div class="error">
+        <p>Пожалуйста, заполните все поля!</p>
+      </div>
+      <div class="buttons">
+        <button class="changePlaceBtn" onclick="closeModal('changeplace')" type="submit"></button>
+        <button class="delPlaceBtn" type="submit"></button>
+      </div>
+    </form>
+  </div>
 
   <!-- Бронь -->
   <div class="form-container reserve hidden">
@@ -167,16 +225,9 @@
     <div class=" places-map">
 
         <div class="seat-info">
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <img src="../img/bookingBtn.svg" alt="кнопка брони">
+
         </div>
       </div>
-      <a href="#changeReserve">
-        <button class="changeResBtn" onclick="openModal('changeReserve')"></button>
-      </a>
       </main>
 
       <footer>

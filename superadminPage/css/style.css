@@ -107,11 +107,11 @@ main {
 .seat {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-size: 32px;
   width: 110px;
-  height: 175px;
+  gap: 15px;
   position: relative;
 }
 
@@ -120,17 +120,6 @@ main {
   font-size: 32px;
 }
 
-.theSeat {
-  background-image: url(../../img/bookingBtn.svg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  width: 306px;
-  height: 62px;
-}
-
-.theSeat:hover {
-  background-image: url(../../img/bookingBtnHover.svg);
-}
 
 main a {
   display: flex;
@@ -177,10 +166,10 @@ main a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-image: url(../../img/infoBack.svg);
+  background-image: url(../../img/adminInfoBack.svg);
   background-repeat: no-repeat;
-  width: 395px;
-  height: 465px;
+  width: 424px;
+  height: 690px;
   top: 180px;
   z-index: 5;
 }
@@ -190,9 +179,10 @@ main a {
   flex-direction: column;
   margin-top: 80px;
   justify-content: space-between;
-  align-items: center;
-  width: 455px;
-  height: 350px;
+  align-items: left;
+  margin-left: 30px;
+  width: 360px;
+  height: 560px;
 }
 
 .seat-info img {
@@ -259,13 +249,13 @@ main a {
   gap: 25px;
 }
 
-.stroke:last-child {
+/* .stroke:last-child {
   width: 100%;
   height: 75px;
   border-radius: 40px;
   border: none;
   padding: 10px;
-}
+} */
 
 
 
@@ -315,12 +305,6 @@ select {
   background-image: url(../../img/resFormBtn.svg);
   width: 330px;
   height: 85px;
-}
-
-button {
-  background: none;
-  color: none;
-  border: none;
 }
 
 .error {
@@ -398,6 +382,128 @@ footer {
   background-image: url(../../img/changeReserveBtnHover.svg);
 }
 
+.seatIcon {
+  width: 111px;
+  height: 111px;
+  margin: auto auto;
+}
+
+.appars {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appar {
+  width: 160px;
+  height: 50px;
+  padding: 10px;
+}
+
+.addplace{
+  height: 600px;
+}
+
+.changeplace {
+  height: 600px;
+}
+
+.changeplace form {
+  height: 500px;
+}
+
+.addPlaceBtn {
+  background-image: url(../../img/addPlaceBtn.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+
+  width: 400px;
+  height: 115px;
+}
+
+.addPlaceBtn:hover {
+    background-image: url(../../img/addPlaceBtnHover.svg);
+}
+
+.changePlaceBtn {
+  background-image: url(../../img/buttons/finish/finishBtn.svg);
+  background-repeat: no-repeat;
+  background-size: 90%;
+  margin: 0 auto;
+
+  width: 330px;
+  height: 115px;
+}
+
+.changePlaceBtn:hover {
+    background-image: url(../../img/buttons/finish/finishBtnHover.svg);
+}
+
+.delPlaceBtn {
+  background-image: url(../../img/buttons/del/delBtn.svg);
+  background-repeat: no-repeat;
+  background-size: 90%;
+  margin: 0 auto;
+
+  width: 300px;
+  height: 115px;
+}
+
+.delPlaceBtn:hover {
+  background-image: url(../../img/buttons/del/delBtnHover.svg);
+}
+
+/* Кнопки суперадмина */
+
+.delAdminBtn {
+  background-image: url(../../img/buttons/adminaccs/delAdminButton.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+
+  width: 386px;
+  height: 60px;
+}
+
+.delAdminBtn:hover {
+    background-image: url(../../img/buttons/adminaccs/delAdminButtonHover.svg);
+}
+
+.addAdminBtn {
+  background-image: url(../../img/buttons/adminaccs/addAdminButton.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+
+  width: 386px;
+  height: 60px;
+}
+
+.addAdminBtn:hover {
+  background-image: url(../../img/buttons/adminaccs/addAdminButtonHover.svg);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.addplace form {
+  height: 500px;
+}
+
+.del {
+  height: 400px;
+}
+
+.del form {
+  height: 300px;
+}
+
 
 @media screen and (max-width: 1440px) {
   body {
@@ -427,9 +533,10 @@ footer {
   font-size: 32px;
 } */
 
-  .theSeat {
-    width: 93px;
-    height: 93px;
+  .seat-info p {
+    font-size: 30px;
+    font-weight: 100;
+    font-weight: lighter;
   }
 }
 

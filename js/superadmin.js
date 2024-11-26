@@ -257,7 +257,6 @@ const bg = document.querySelector('.back')
 let pricePerHour
 let currentNum
 
-// Функция для обновления статуса мест
 function updatePlaceStatuses() {
   const currentDate = new Date();
   const currentDateString = currentDate.toISOString().split('T')[0];
@@ -467,20 +466,17 @@ dateBegInput.addEventListener('change', (e) => {
     `<option>Выберите время начала</option>`
   );
 
-  // Получаем занятые временные интервалы для выбранного места и даты
   const bookedTimes = bookings
     .filter(booking => booking.seat_id === currentNum && booking.begin_date === dateBegInput.value)
     .flatMap(booking => {
       const startHour = parseInt(booking.begin_time);
       const endHour = parseInt(booking.end_time);
 
-      // Создаем массив занятых часов
       return Array.from({ length: endHour - startHour }, (_, i) => startHour + i);
     });
 
-  // Добавляем доступные временные интервалы
   for (let i = 0; i <= 25; i++) {
-    if (!bookedTimes.includes(i)) { // Проверяем, свободен ли час
+    if (!bookedTimes.includes(i)) {
       timeBegSelect.insertAdjacentHTML('beforeend',
         `<option value="${i}">${i}:00</option>`
       );
@@ -496,30 +492,26 @@ timeBegSelect.addEventListener('change', (e) => {
     `<option value="stub">Выберите время окончания</option>`
   );
 
-  // Получаем все бронирования для выбранного места и даты
   const bookingsForDate = bookings.filter(booking =>
     booking.seat_id === currentNum && booking.begin_date === dateBegInput.value
   );
 
-  // Находим ближайшую бронь после выбранного времени
   const nearestBooking = bookingsForDate
     .filter(booking => parseInt(booking.begin_time) > Number(timeBegSelect.value))
     .sort((a, b) => parseInt(a.begin_time) - parseInt(b.begin_time))[0];
 
-  let maxEndTime = 24; // Максимальное время окончания (например, 24:00)
+  let maxEndTime = 24;
 
   if (nearestBooking) {
-    maxEndTime = parseInt(nearestBooking.begin_time); // Устанавливаем максимальное время окончания до начала ближайшей брони
+    maxEndTime = parseInt(nearestBooking.begin_time);
   }
 
-  // Добавляем доступные временные интервалы для timeEndSelect
   for (let i = Number(timeBegSelect.value) + 1; i < maxEndTime; i++) {
     timeEndSelect.insertAdjacentHTML('beforeend',
       `<option value="${i}">${i}:00</option>`
     );
   }
 
-  // Если нет ближайших броней после выбранного времени, добавляем все доступные часы до 24:00
   if (!nearestBooking) {
     for (let i = Number(timeBegSelect.value) + 1; i < 24; i++) {
       timeEndSelect.insertAdjacentHTML('beforeend',
@@ -934,13 +926,11 @@ if (sessionStorage.getItem('currentUser')) {
 
 // Работа с местами
 
-// Функция для заполнения селектов
 function populateSelects() {
   const cpuSelect = document.querySelector('.cpuSelect');
   const gpuSelect = document.querySelector('.gpuSelect');
   const monitorSelect = document.querySelector('.monitorSelect');
 
-  // Заполнение селекта CPU
   cpus.forEach(cpu => {
     const option = document.createElement('option');
     option.value = cpu.cpu_id;
@@ -948,7 +938,6 @@ function populateSelects() {
     cpuSelect.appendChild(option);
   });
 
-  // Заполнение селекта GPU
   gpus.forEach(gpu => {
     const option = document.createElement('option');
     option.value = gpu.gpu_id;
@@ -956,7 +945,6 @@ function populateSelects() {
     gpuSelect.appendChild(option);
   });
 
-  // Заполнение селекта Мониторов
   monitors.forEach(monitor => {
     const option = document.createElement('option');
     option.value = monitor.monitor_id;
@@ -965,9 +953,8 @@ function populateSelects() {
   });
 }
 
-// Функция для добавления нового места
 function addPlace(event) {
-  event.preventDefault(); // Предотвращаем отправку формы
+  event.preventDefault();
 
   const priceInput = document.querySelector('.price');
   const selectedCpuId = document.querySelector('.cpuSelect').value;
@@ -976,7 +963,6 @@ function addPlace(event) {
   const allSeats = document.querySelectorAll('.seat')
 
 
-  // Создаем новое место
   const newPlace = {
     place_id: allSeats.length + 1,
     place_number: currentNum,
@@ -988,37 +974,30 @@ function addPlace(event) {
     weekTime: 0
   };
 
-  // Добавляем новое место в массив мест и сохраняем в localStorage
   places.push(newPlace);
   localStorage.setItem('places', JSON.stringify(places));
 
-  // Очистка формы после добавления
   document.getElementById('addplaceForm').reset();
   clearModal("addplace");
 
 }
 
-// Ограничиваем ввод в поле цены только числами
 document.querySelector('.price').addEventListener('keypress', function (event) {
   if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') {
     event.preventDefault();
   }
 });
 
-// Заполняем селекты при загрузке страницы
 populateSelects();
 
-// Добавляем обработчик события на форму
 document.querySelector('#addplaceForm').addEventListener('submit', addPlace);
 
 
-// Функция для заполнения селектов
 function populatechangeSelects() {
   const cpuSelect = document.querySelector('.changecpuSelect');
   const gpuSelect = document.querySelector('.changegpuSelect');
   const monitorSelect = document.querySelector('.changemonitorSelect');
 
-  // Заполнение селекта CPU
   cpus.forEach(cpu => {
     const option = document.createElement('option');
     option.value = cpu.cpu_id;
@@ -1026,7 +1005,6 @@ function populatechangeSelects() {
     cpuSelect.appendChild(option);
   });
 
-  // Заполнение селекта GPU
   gpus.forEach(gpu => {
     const option = document.createElement('option');
     option.value = gpu.gpu_id;
@@ -1034,7 +1012,6 @@ function populatechangeSelects() {
     gpuSelect.appendChild(option);
   });
 
-  // Заполнение селекта Мониторов
   monitors.forEach(monitor => {
     const option = document.createElement('option');
     option.value = monitor.monitor_id;
@@ -1043,7 +1020,6 @@ function populatechangeSelects() {
   });
 }
 
-// Функция для загрузки данных о месте в форму
 function loadPlaceData() {
   const placeToEdit = places.find(place => place.place_number === currentNum);
 
@@ -1055,16 +1031,14 @@ function loadPlaceData() {
   }
 }
 
-// Функция для изменения места
 function changePlace(event) {
-  event.preventDefault(); // Предотвращаем отправку формы
+  event.preventDefault();
 
   const priceInput = document.querySelector('.changeprice');
   const selectedCpuId = document.querySelector('.changecpuSelect').value;
   const selectedGpuId = document.querySelector('.changegpuSelect').value;
   const selectedMonitorId = document.querySelector('.changemonitorSelect').value;
 
-  // Находим индекс места для изменения
   const placeIndex = places.findIndex(place => place.place_number === currentNum.toString());
   console.log(placeIndex);
   console.log(priceInput);
@@ -1085,18 +1059,14 @@ function changePlace(event) {
   }
 }
 
-// Функция для удаления места
 function deletePlace(event) {
-  event.preventDefault(); // Предотвращаем отправку формы
+  event.preventDefault();
 
-  // Находим индекс места для удаления
   const placeIndex = places.findIndex(place => place.place_number === currentNum.toString());
 
   if (placeIndex !== -1) {
-    // Удаляем место из массива
     places.splice(placeIndex, 1);
 
-    // Сохраняем обновленный массив мест в localStorage
     localStorage.setItem('places', JSON.stringify(places));
 
     clearModal("changeplace");
@@ -1104,17 +1074,14 @@ function deletePlace(event) {
   }
 }
 
-// Ограничиваем ввод в поле цены только числами
 document.querySelector('.price').addEventListener('keypress', function (event) {
   if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') {
     event.preventDefault();
   }
 });
 
-// Заполняем селекты и загружаем данные о месте при загрузке страницы
 populatechangeSelects();
 loadPlaceData();
 
-// Добавляем обработчики событий на кнопки изменения и удаления мест
 document.querySelector('.changePlaceBtn').addEventListener('click', changePlace);
 document.querySelector('.delPlaceBtn').addEventListener('click', deletePlace);

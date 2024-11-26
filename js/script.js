@@ -49,7 +49,7 @@ const errorlog = login.querySelector(".error");
 
 
 
-const form = reg.querySelector(".form");
+const form = reg.querySelectorAll(".form");
 const formLog = login.querySelector(".form");
 
 
@@ -83,23 +83,18 @@ phoneInput.forEach(element => {
             value = value.slice(0, 11);
         }
         let formattedValue = "+7 (";
-
         if (value.length > 1) {
             formattedValue += value.substring(1, 4);
         }
-
         if (value.length >= 4) {
             formattedValue += ") " + value.substring(4, 7);
         }
-
         if (value.length >= 7) {
             formattedValue += "-" + value.substring(7, 9);
         }
-
         if (value.length >= 9) {
             formattedValue += "-" + value.substring(9, 11);
         }
-
         this.value = formattedValue;
     });
 });
@@ -114,17 +109,21 @@ function generateUniqueId(users) {
     return id;
 }
 
-form.addEventListener("submit", function (e) {
+form[0].addEventListener("submit", function (e) {
     e.preventDefault();
+    console.log(123);
+
     const password = passwordInput.value;
     const userName = usernameInput.value;
-    const phone = phoneInput.value;
+    const phone = phoneInput[0].value;
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(usernameInput.value)) {
         errorEmail.style.display = "flex";
         errorEmail.firstElementChild.textContent = "Пожалуйста, введите корректный email.";
         e.preventDefault();
+        console.log(1);
+
         return;
     }
 
@@ -138,13 +137,17 @@ form.addEventListener("submit", function (e) {
         error.firstElementChild.textContent =
             "Пароль должен содержать минимум 8 символов, одну заглавную букву и минимум 4 цифры.";
         e.preventDefault();
+        console.log(2);
+
         return;
     }
 
     if (users.find(user => user.phone == phone)) {
         errorlog.style.display = "flex";
+        console.log(3);
+
         errorlog.firstElementChild.textContent =
-            "Неправильный номер или пароль";
+            "пользователь с таким номером телефона уже зарегестрировань";
     } else {
 
         users.push({

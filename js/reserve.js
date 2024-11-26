@@ -408,7 +408,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const formattedMaxDate = `${maxYyyy}-${maxMm}-${maxDd}`;
 
   document.querySelector('.dateBeg').setAttribute('max', formattedMaxDate);
-
 });
 
 // Основа
@@ -434,20 +433,17 @@ dateBegInput.addEventListener('change', (e) => {
     `<option>Выберите время начала</option>`
   );
 
-  // Получаем занятые временные интервалы для выбранного места и даты
   const bookedTimes = bookings
     .filter(booking => booking.seat_id === currentNum && booking.begin_date === dateBegInput.value)
     .flatMap(booking => {
       const startHour = parseInt(booking.begin_time);
       const endHour = parseInt(booking.end_time);
 
-      // Создаем массив занятых часов
       return Array.from({ length: endHour - startHour }, (_, i) => startHour + i);
     });
 
-  // Добавляем доступные временные интервалы
   for (let i = 0; i <= 25; i++) {
-    if (!bookedTimes.includes(i)) { // Проверяем, свободен ли час
+    if (!bookedTimes.includes(i)) {
       timeBegSelect.insertAdjacentHTML('beforeend',
         `<option value="${i}">${i}:00</option>`
       );
@@ -463,30 +459,25 @@ timeBegSelect.addEventListener('change', (e) => {
     `<option value="stub">Выберите время окончания</option>`
   );
 
-  // Получаем все бронирования для выбранного места и даты
   const bookingsForDate = bookings.filter(booking =>
     booking.seat_id === currentNum && booking.begin_date === dateBegInput.value
   );
 
-  // Находим ближайшую бронь после выбранного времени
   const nearestBooking = bookingsForDate
     .filter(booking => parseInt(booking.begin_time) > Number(timeBegSelect.value))
     .sort((a, b) => parseInt(a.begin_time) - parseInt(b.begin_time))[0];
 
-  let maxEndTime = 24; // Максимальное время окончания (например, 24:00)
+  let maxEndTime = 24;
 
   if (nearestBooking) {
-    maxEndTime = parseInt(nearestBooking.begin_time); // Устанавливаем максимальное время окончания до начала ближайшей брони
+    maxEndTime = parseInt(nearestBooking.begin_time);
   }
-
-  // Добавляем доступные временные интервалы для timeEndSelect
   for (let i = Number(timeBegSelect.value) + 1; i < maxEndTime; i++) {
     timeEndSelect.insertAdjacentHTML('beforeend',
       `<option value="${i}">${i}:00</option>`
     );
   }
 
-  // Если нет ближайших броней после выбранного времени, добавляем все доступные часы до 24:00
   if (!nearestBooking) {
     for (let i = Number(timeBegSelect.value) + 1; i < 24; i++) {
       timeEndSelect.insertAdjacentHTML('beforeend',
@@ -532,7 +523,6 @@ function loadUserBookings() {
   });
 }
 
-// Обработчик изменения выбранной брони
 changeBookingNum.addEventListener('change', (e) => {
   changeTimeBegSelect.disabled = false;
 
@@ -540,24 +530,19 @@ changeBookingNum.addEventListener('change', (e) => {
   const selectedBooking = bookings.find(booking => booking.booking_id === selectedBookingId);
 
   if (selectedBooking) {
-    // Заполняем текущие данные
     document.getElementById('currentBeginDate').textContent = `${selectedBooking.begin_time}:00`;
     document.getElementById('currentEndDate').textContent = `${selectedBooking.end_time}:00`;
     document.getElementById('currentDate').textContent = `${selectedBooking.begin_date}`;
     changePlaceNumberSpan.textContent = selectedBooking.seat_id;
 
-    // Заполняем временные интервалы
     loadAvailableTimes(selectedBooking);
   }
 });
 
 
-// Функция для загрузки доступных временных интервалов
 function loadAvailableTimes(booking) {
-  // Заполняем timeBegSelect
   changeTimeBegSelect.innerHTML = '';
 
-  // Получаем занятые временные интервалы для выбранного места и даты
   const bookedTimes = bookings
     .filter(b => b.seat_id === booking.seat_id && b.begin_date === booking.begin_date)
     .flatMap(b => {
@@ -566,15 +551,12 @@ function loadAvailableTimes(booking) {
       return Array.from({ length: endHour - startHour }, (_, i) => startHour + i);
     });
 
-  // Находим последнюю бронь, которая заканчивается до начала текущей брони
   const lastBooking = bookings
     .filter(b => b.seat_id === booking.seat_id && b.begin_date === booking.begin_date && parseInt(b.end_time) <= booking.begin_time)
     .sort((a, b) => parseInt(b.end_time) - parseInt(a.end_time))[0];
 
-  // Начинаем заполнять доступные временные интервалы с конца последней брони или с 0
   const startTime = lastBooking ? parseInt(lastBooking.end_time) : 0;
 
-  // Добавляем доступные временные интервалы до текущего времени окончания бронирования
   for (let i = startTime; i < booking.end_time; i++) {
     console.log(i);
 
@@ -592,24 +574,21 @@ changeTimeBegSelect.addEventListener('change', ()=> {
   const selectedBooking = bookings.find(booking => booking.booking_id === selectedBookingId);
 
   changeTimeEndSelect.disabled = false;
-  // Заполняем timeEndSelect
   changeTimeEndSelect.innerHTML = '';
 
-  // Находим ближайшую бронь после выбранного времени начала
   const nearestBooking = bookings.find(b =>
     b.seat_id === selectedBooking.seat_id &&
     b.begin_date === selectedBooking.begin_date &&
     parseInt(b.begin_time) > selectedBooking.begin_time
   );
-  let maxEndTime = 24; // Максимальное время окончания (например, 24:00)
+  let maxEndTime = 24;
   console.log(nearestBooking);
 
   if (nearestBooking) {
-    maxEndTime = parseInt(nearestBooking.begin_time); // Устанавливаем максимальное время окончания до начала ближайшей брони
+    maxEndTime = parseInt(nearestBooking.begin_time);
   }
   console.log(changeTimeBegSelect.value);
 
-  // Заполняем timeEndSelect доступными временными интервалами
   for (let i = Number(changeTimeBegSelect.value) + 1; i <= maxEndTime; i++) {
 
     const option = document.createElement('option');
@@ -620,21 +599,18 @@ changeTimeBegSelect.addEventListener('change', ()=> {
 })
 
 
-// Обработчик изменения времени начала
 changeTimeBegSelect.addEventListener('change', () => {
   if (changeTimeBegSelect.value && changeTimeEndSelect.value) {
     updateTotalCost();
   }
 });
 
-// Обработчик изменения времени окончания
 changeTimeEndSelect.addEventListener('change', () => {
   if (changeTimeBegSelect.value && changeTimeEndSelect.value) {
     updateTotalCost();
   }
 });
 
-// Функция для обновления итоговой стоимости
 function updateTotalCost() {
   const beginTime = Number(changeTimeBegSelect.value);
   const endTime = Number(changeTimeEndSelect.value);
@@ -645,14 +621,12 @@ function updateTotalCost() {
   }
 }
 
-// Обработчик отправки формы изменения брони
 changeBookingForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   if (!changeTimeBegSelect.value || !changeTimeEndSelect.value) {
     changeErWindow.style.display = 'flex';
   } else {
-    // Обновляем данные о броне
     const selectedBookingId = Number(changeBookingNum.value);
 
     const updatedBookingIndex = bookings.findIndex(booking => booking.booking_id === selectedBookingId);
@@ -664,13 +638,12 @@ changeBookingForm.addEventListener('submit', (e) => {
       localStorage.setItem('bookings', JSON.stringify(bookings));
 
       console.log("Бронь успешно изменена!");
-      clearModal('changeReserve'); // Функция для закрытия модального окна
-      loadUserBookings(); // Обновляем список броней после изменения
+      clearModal('changeReserve');
+      loadUserBookings();
     }
   }
 });
 
-// Инициализируем загрузку броней при загрузке страницы
 
 
 
@@ -692,13 +665,6 @@ bookingForm.addEventListener('submit', (e) => {
   } else {
     let id = getRandomInt(1000)
 
-    console.log(id);
-
-    console.log(dateBegInput.value);
-    console.log(timeBegSelect.value);
-
-
-
     bookings.push(
       {
         booking_id: id,
@@ -710,7 +676,6 @@ bookingForm.addEventListener('submit', (e) => {
         status: "подтверждено"
       },
     )
-    console.log(bookings);
     localStorage.setItem('bookings', JSON.stringify(bookings))
 
     clearModal('reserve')

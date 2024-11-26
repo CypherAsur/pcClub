@@ -278,7 +278,7 @@ main a {
 select {
   width: 250px;
   background: #d9d9d9;
-  border-radius: 35px;
+  border-radius: 25px;
 }
 
 .right select {
@@ -396,8 +396,8 @@ footer {
 }
 
 .appar {
-  width: 160px;
-  height: 50px;
+  width: 200px;
+  height: 70px;
   padding: 10px;
 }
 
